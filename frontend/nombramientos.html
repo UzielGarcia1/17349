@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nombramientos</title>
+</head>
+<body>
+    <h1>Nombramientos</h1>
+    <button onclick="Npost()">Post</button>
+    <button onclick="Nput()">Put</button>
+    <button onclick="Ndelete()">Delete</button>
+
+    <script>
+        let url = "http://localhost:8081/nombramientos"
+
+        function Npost() {
+            fetch(url,{
+                method : "POST",
+            })
+            .then(respuesta => {
+                return respuesta.text()
+            })
+            .then(datos => {
+                console.log(datos)
+            })
+            .catch( error => {
+                console.log(error)
+            })
+        }
+    </script>
+</body>
+</html>

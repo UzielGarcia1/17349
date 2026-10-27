@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Fetch</title>
+</head>
+
+<body>
+    <h1>Api Fetch</h1>
+    <button onclick="llamar()">Fetch</button>
+    <button onclick="llamar2()">Ajax</button>
+    <button onclick="llamar3()">Fetch async/await</button>
+
+    <script>
+        function llamar() {
+            let URL = "https://jsonplaceholder.typicode.com/users/1"
+            let parametros = ""
+            fetch(URL)
+                .then(respuesta => {
+                    console.log(respuesta)
+                    datos = respuesta.json()
+                    console.log(datos)
+                    return datos
+                })
+                .then(
+                    datos => {
+                        console.log(datos)
+                    }
+                )
+                .catch(error => {
+                    console.log("ojo:" + error)
+                })
+        }
+        
+        function llamar3() {
+            let URL = "https://jsonplaceholder.typicode.com/users/1"
+            let parametros = ""
+            fetch(URL)
+                .then(async respuesta => {
+                    console.log(respuesta)
+                    datos = await respuesta.json()
+                    console.log(datos)
+                })
+                .catch(error => {
+                    console.log("ojo:" + error)
+                })
+        }
+
+        function llamar2() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onload =  respuesta => {
+                console.log( JSON.parse( xhttp.responseText ) )
+            };
+            URL = "https://jsonplaceholder.typicode.com/users/1"
+            xhttp.open("GET", URL, true);
+            xhttp.send();
+        }
+    </script>
+
+</body>
+
+</html>

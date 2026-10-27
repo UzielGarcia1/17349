@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear saludador</title>
+</head>
+
+<body>
+    <h1>Crear saludador</h1>
+    <label for="">usuario:</label>
+    <input type="text" id="usuario">
+    <button onclick="crear()">Crear</button>
+    <script>
+        usuario = document.getElementById("usuario")
+
+        function crear() {
+            url = "http://localhost:8081/crearSaludador"
+
+            u = usuario.value
+            datos = JSON.stringify(
+                {
+                    contenido: u
+                }
+            )
+            console.log(datos)
+            parametros = {
+                method: "POST",
+                body: datos,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+            console.log(parametros)
+
+            fetch(url, parametros)
+                .then(respuesta => {
+                    console.log(respuesta)
+                    return respuesta
+                })
+                .then(datos => {
+                    console.log(datos)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+    </script>
+</body>
+
+</html>
